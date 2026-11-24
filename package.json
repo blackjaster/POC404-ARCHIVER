@@ -1,21 +1,5 @@
 {
-  "name": "poc404",
-  "version": "1.1.0",
-  "description": "POC404 — a fast, unlimited, transparent website archiver with a neon control panel. Local, zero-dependency, Node >= 18.",
-  "main": "server.js",
   "scripts": {
     "start": "node server.js"
-  },
-  "keywords": [
-    "archiver",
-    "website-mirror",
-    "crawler",
-    "robots-txt",
-    "offline-archive"
-  ],
-  "engines": {
-    "node": ">=18.17"
-  },
-  "license": "MIT",
-  "private": true
+  }
 }
