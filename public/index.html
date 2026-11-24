@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="dark" />
+<title>POC404 — Site Archiver</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<div class="glow" aria-hidden="true"></div>
+
+<main class="shell">
+  <header class="masthead">
+    <div class="brand">
+      <span class="logo" aria-label="POC404">POC<span class="logo-404">404</span></span>
+      <span class="tag">site&nbsp;archiver&nbsp;·&nbsp;local&nbsp;·&nbsp;unlimited&nbsp;·&nbsp;transparent</span>
+    </div>
+    <div class="server-status" aria-live="polite">
+      <span class="dot" id="statusDot"></span>
+      <span id="statusText">connecting…</span>
+    </div>
+  </header>
+
+  <section class="panel" aria-labelledby="targetHeading">
+    <h2 class="panel-title" id="targetHeading">01 — Target &amp; options</h2>
+    <form id="runForm" novalidate>
+      <label class="field-label" for="target">Target URL</label>
+      <div class="url-row">
+        <input id="target" name="target" type="url" inputmode="url" spellcheck="false"
+               placeholder="https://example.com" autocomplete="off" required />
+        <button type="submit" class="btn btn-primary" id="startBtn">START&nbsp;RUN</button>
+        <button type="button" class="btn" id="stopBtn" disabled>STOP</button>
+      </div>
+      <p class="hint" id="formHint">Unlimited crawl — no page, depth, byte or rate caps. Honest UA; robots.txt Disallow rules respected.</p>
+
+      <fieldset class="limits">
+        <legend>Options</legend>
+        <div class="limits-grid">
+          <label class="check">
+            <input id="crossOrigin" type="checkbox" checked />
+            <span class="checkbox-box" aria-hidden="true"></span>
+            include cross-origin assets (CDN fonts, images)
+          </label>
+        </div>
+      </fieldset>
+    </form>
+  </section>
+
+  <section class="panel" aria-labelledby="progressHeading">
+    <h2 class="panel-title" id="progressHeading">02 — Live status</h2>
+
+    <div class="phase-row">
+      <span class="phase" id="phase">idle</span>
+      <span class="current" id="current"></span>
+    </div>
+
+    <div class="bar" id="barWrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Archive progress">
+      <div class="bar-fill" id="barFill"></div>
+    </div>
+
+    <div class="chips">
+      <div class="chip"><span class="k">pages</span><span class="v" id="stPages">0 / 0</span></div>
+      <div class="chip"><span class="k">assets</span><span class="v" id="stAssets">0 / 0</span></div>
+      <div class="chip"><span class="k">bytes</span><span class="v" id="stBytes">0 B</span></div>
+      <div class="chip"><span class="k">speed</span><span class="v" id="stSpeed">0 B/s</span></div>
+      <div class="chip"><span class="k">failures</span><span class="v" id="stFail">0</span></div>
+      <div class="chip"><span class="k">elapsed</span><span class="v" id="stElapsed">0 s</span></div>
+    </div>
+
+    <div class="robots" id="robotsNote">robots.txt: —</div>
+
+    <pre class="console" id="console" aria-live="polite" aria-label="Archive log"></pre>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="downloadBtn" disabled>DOWNLOAD&nbsp;ZIP</button>
+      <span class="zip-info" id="zipInfo"></span>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>POC404 binds to this machine only · identifies itself in every request · follows robots.txt</span>
+    <span class="foot-right" id="footNote"></span>
+  </footer>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>
